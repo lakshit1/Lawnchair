@@ -18,7 +18,14 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleQuickstepLawnchairDevDebug'
-
+- task: AndroidSigning@3
+  inputs:
+    apkFiles: '**/*.apk'
+    apksignerKeystoreFile: 'blueprint.jks'
+    apksignerKeystorePassword: 'blueprint'
+    apksignerKeystoreAlias: 'blueprint'
+    apksignerKeyPassword: 'blueprint'
+    zipalign: false
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Pipeline.Workspace)'
